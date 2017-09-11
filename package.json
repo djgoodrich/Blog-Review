@@ -22,9 +22,12 @@
   },
   "homepage": "https://github.com/djgoodrich/groupProject2#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.0",
+    "exphbs": "^1.1.0",
     "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
     "mysql2": "^1.4.2",
+    "semantic-ui": "^2.2.13",
     "sequelize": "^4.8.2"
   }
 }

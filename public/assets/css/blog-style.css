@@ -1,0 +1,79 @@
+.navbar-brand {
+	font-family: 'Fredericka the Great', cursive ;
+}
+.addOne {
+	padding: 30px;
+}
+.topBlogs {
+	padding: 30px;
+	border-bottom: solid 1px black;
+	font-family: 'Fredericka the Great', cursive;
+}
+
+.blogRoll {
+	margin-top: 40px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+html, body{
+  height: 100%;
+  font-weight: 800;
+}
+
+.header{
+  background: #000;
+  font-family: 'Roboto', sans-serif;
+}
+h4{
+    color:#fff;
+}
+svg {
+    display: block;
+    font: 9.5em 'Roboto';
+    font-family: 'Roboto', sans-serif;
+    width: 960px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.web-coder-skull {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.web-coder-skull:nth-child(6){
+    stroke: #263238;
+	animation-delay: -1;
+}
+
+.web-coder-skull:nth-child(2){
+	stroke: #26abe2;
+	animation-delay: -2s;
+}
+
+.web-coder-skull:nth-child(3){
+	stroke: orange;
+	animation-delay: -3s;
+}
+
+.web-coder-skull:nth-child(4){
+	stroke: red;
+	animation-delay: -4s;
+}
+
+.web-coder-skull:nth-child(5){
+	stroke: #fff;
+	animation-delay: -5s;
+}
+.web-coder-skull:nth-child(1){ 
+stroke: green;
+animation-delay: -1s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
