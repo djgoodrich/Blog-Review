@@ -30,10 +30,12 @@ var auth = new expressAuth0Simple(app); // Pass in your express app instance her
 var apiRoutes = require("./routes/blog-api-routes.js")(app,auth);
 // Routes
 // =============================================================
+
 require("./routes/html-routes.js")(app,auth);
 require("./routes/blog-api-routes.js")(app,auth);
 require("./routes/review-api-routes.js")(app,auth);
 require("./routes/user-api-routes.js")(app,auth);
+
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {

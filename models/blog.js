@@ -1,6 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
     var Blog = sequelize.define("Blog", {
-      // Giving the User model a name of type STRING
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -20,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             len: [1, 180]
         },
-        author: {
+        blog_author: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -29,7 +28,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         cumulative_rating: {
             type: DataTypes.DECIMAL(3,2),
-            allowNull: false,
             len: [1]
         }     
     },
