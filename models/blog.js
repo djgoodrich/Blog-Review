@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             len: [1, 180]
         },
-        author: {
+        blog_author: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -29,7 +29,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         cumulative_rating: {
             type: DataTypes.DECIMAL(3,2),
-            allowNull: false,
             len: [1]
         }     
     },

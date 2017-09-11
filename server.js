@@ -4,8 +4,10 @@
 // ******************************************************************************
 // *** Dependencies
 // =============================================================
+require('dotenv').config();
 var express = require("express");
 var bodyParser = require("body-parser");
+var expressAuth0Simple = require('express-auth0-simple'); // Import the middleware library 
 
 // Sets up the Express App
 // =============================================================
@@ -24,12 +26,14 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Static directory
 app.use(express.static("public"));
 
+var auth = new expressAuth0Simple(app); // Pass in your express app instance here 
+var apiRoutes = require("./routes/blog-api-routes.js")(app,auth);
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);
-// require("./routes/author-api-routes.js")(app);
-// require("./routes/post-api-routes.js")(app);
-
+require("./routes/html-routes.js")(app,auth);
+require("./routes/blog-api-routes.js")(app,auth);
+require("./routes/review-api-routes.js")(app,auth);
+require("./routes/user-api-routes.js")(app,auth);
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {

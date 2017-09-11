@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       body: {
         type: DataTypes.TEXT,
         len: [1]
+        // Add validation to make sure that if title is not null, body has to be not null
       }, 
       rating: {
           type: DataTypes.INTEGER,
