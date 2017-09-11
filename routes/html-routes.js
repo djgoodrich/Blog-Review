@@ -8,7 +8,12 @@ module.exports = function(app) {
 
     // Send to homepage with top ten blogs displayed
     app.get("/", function(req, res) {
-        // res.sendFile(...);
+        db.Blog.findAll( {
+           limit: 10,
+           order: [['cumulative_rating', 'DESC']] 
+        }).then(function(results) {
+            res.render("index", {topTen: results});
+        })
     });
 
     // Send to blog page with title, website, description, cumulative rating displayed at top; reviews listed below.
@@ -28,6 +33,21 @@ module.exports = function(app) {
         console.log(JSON.stringify(users))
         // Send info to handlebars
         // res.sendFile(...);
+    });
+    app.get("/users/:username", function(req, res) {
+        var user;
+        // Get users sorted by number of reviews
+        db.User.findOne({
+            include: [db.Review],
+            where: {
+                name: req.params.username
+            }
+        }).then(function(dbUser){
+            user = res.json(dbUser);
+        })
+        console.log(JSON.stringify(user))
+        // Send info to handlebars
+         res.render();
     });
 
 };
