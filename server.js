@@ -26,6 +26,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Static directory
 app.use(express.static("public"));
 
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 var auth = new expressAuth0Simple(app); // Pass in your express app instance here 
 var apiRoutes = require("./routes/blog-api-routes.js")(app,auth);
 // Routes
@@ -38,7 +43,7 @@ require("./routes/user-api-routes.js")(app,auth);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

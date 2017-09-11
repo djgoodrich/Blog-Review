@@ -17,17 +17,19 @@ module.exports = function(app) {
     });
 
     // Send to user page with list of reviews/ratings; if you are the user whose page you are on, you can edit any of your reviews from here.
-    app.get("/users/", function(req, res) {
-        var users;
+    app.get("/user/:username", function(req, res) {
+        
         // Get users sorted by number of reviews
-        db.User.findAll({
-            include: [db.Review]
+        db.User.findOne({
+            include: [db.Review],
+            where: {
+                name: req.params.username
+            }
         }).then(function(dbUser){
-            users = res.json(dbUser);
+            console.log(JSON.stringify(dbUser))
+           res.render("user", dbUser);
         })
-        console.log(JSON.stringify(users))
-        // Send info to handlebars
-        // res.sendFile(...);
+
     });
 
 };

@@ -1,0 +1,11 @@
+<h1>Name: {{name}}</h1>
+<h2>Reviews</h2>
+{{#each Reviews}}
+    <div class="card">
+        <div class="card-body">
+            <h3>{{this.title}}</h3>
+            <h4><em>Blog Title</em></h4>
+            <p>{{this.body}}</p>
+        </div>
+    </div>
+ {{/each}}
