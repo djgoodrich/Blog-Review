@@ -11,7 +11,7 @@ module.exports = function(app) {
     });  
         
     // Add blogs
-    app.Blog.post("api/blogs", function(req, res) {
+    app.post("api/blogs", function(req, res) {
         db.Blog.create(req.body).then(function(dbBlog) {
             res.json(dbBlog);
         });
