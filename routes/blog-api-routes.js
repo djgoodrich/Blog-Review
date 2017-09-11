@@ -1,5 +1,6 @@
 var db = require("../models");
 
+<<<<<<< HEAD
 module.exports = function(app) {
     // Get blogs
     app.get("/api/blogs", function(req, res){
