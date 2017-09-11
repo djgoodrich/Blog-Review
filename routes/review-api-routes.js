@@ -15,7 +15,7 @@ module.exports = function(app) {
         });
     });
 
-    api.get("/api/reviews/:id", function(req, res) {
+    app.get("/api/reviews/:id", function(req, res) {
         db.Review.findOne({
             where: {
                 id: req.params.id
