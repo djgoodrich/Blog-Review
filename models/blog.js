@@ -29,7 +29,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         cumulative_rating: {
             type: DataTypes.DECIMAL(3,2),
-            allowNull: false,
             len: [1]
         }     
     },
