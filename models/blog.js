@@ -1,6 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
     var Blog = sequelize.define("Blog", {
-      // Giving the User model a name of type STRING
         title: {
             type: DataTypes.STRING,
             allowNull: false,
