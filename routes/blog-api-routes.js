@@ -1,6 +1,6 @@
 var db = require("../models");
 
-<<<<<<< HEAD
+
 module.exports = function(app) {
     // Get blogs
     app.get("/api/blogs", function(req, res){
@@ -12,5 +12,9 @@ module.exports = function(app) {
     });  
         
     // Add blogs
-
+    app.Blog.post("api/blogs", function(req, res) {
+        db.Blog.create(req.body).then(function(dbBlog) {
+            res.json(dbBlog);
+        });
+    });
 };

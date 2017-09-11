@@ -14,7 +14,18 @@ module.exports = function(app) {
             res.json(dbReview);
         });
     });
-    
+
+    api.get("/api/reviews/:id", function(req, res) {
+        db.Review.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Review]
+        }).then(function(dbReveiw) {
+            res.json(dbReview);
+        });
+    });
+
     app.post("/api/reviews", function(req, res) {
         db.Review.create(req.body).then(function(dbReview) {
             res.json(dbReview);
