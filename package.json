@@ -27,6 +27,7 @@
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
     "mysql2": "^1.4.2",
+    "path": "^0.12.7",
     "semantic-ui": "^2.2.13",
     "sequelize": "^4.8.2"
   }
