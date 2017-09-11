@@ -1,6 +1,20 @@
 var db = require("../models");
 
 module.exports = function(app) {
+    app.get("/api/reviews", function(req, res) {
+        var query = {};
+        if (req.query.review_id) {
+            query.ReviewId = req.query.review_id;
+        }
+
+        db.Review.findAll({
+            where: query, 
+            include: [db.Review]
+        }).then(function(dbReview) {
+            res.json(dbReview);
+        });
+    });
+    
     app.post("/api/reviews", function(req, res) {
         db.Review.create(req.body).then(function(dbReview) {
             res.json(dbReview);
