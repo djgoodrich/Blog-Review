@@ -24,9 +24,7 @@ html, body{
   background: #000;
   font-family: 'Roboto', sans-serif;
 }
-h4{
-    color:#fff;
-}
+
 svg {
     display: block;
     font: 9.5em 'Roboto';
