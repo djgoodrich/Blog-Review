@@ -4,13 +4,11 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         validate: {
           len: [1]
-          // Add validation to make sure that if body is not null, title has to be not null
         }
       },
       body: {
         type: DataTypes.TEXT,
         len: [1]
-        // Add validation to make sure that if title is not null, body has to be not null
       }, 
       rating: {
           type: DataTypes.INTEGER,
@@ -24,6 +22,14 @@ module.exports = function(sequelize, DataTypes) {
       updatedAt: {
         type: DataTypes.DATE,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+      }
+    }, {
+      validate: {
+        bothTitleAndBodyOrNone() {
+          if ((this.title === null) !== (this.body === null)) {
+            throw new Error('Require either both title and body or neither')
+          }
+        }
       }
     });
   

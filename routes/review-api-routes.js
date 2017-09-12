@@ -43,7 +43,7 @@ module.exports = function(app) {
     });
 
     app.put("/api/reviews", function(req, res) {
-        dp.Review.update(
+        db.Review.update(
             req.body,
             {
                 where: {
