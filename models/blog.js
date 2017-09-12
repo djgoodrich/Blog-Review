@@ -5,6 +5,9 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 len: [1]
+            },
+            set(val) {
+                this.setDataValue('routename', this.title.replace(/\s+/g, "").toLowerCase());
             }
         },
         website: {
@@ -34,9 +37,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "",
-            set(val) {
-              this.setDataValue('routename', this.title.replace(/\s+/g, "").toLowerCase());
-            }
         } 
     },
     {
