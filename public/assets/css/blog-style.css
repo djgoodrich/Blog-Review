@@ -77,3 +77,20 @@ animation-delay: -1s;
 @keyframes stroke-offset{
 	100% {stroke-dashoffset: -35%;}
 }
+.card {
+    border: 0;
+}
+.card-body {
+    font-family: 'Fredericka the Great', cursive;
+    margin-bottom: 40px;
+    box-shadow: 10px 10px 5px #888888;
+    
+}
+#title {
+    background-color: #B92828;
+    color: white;
+    padding: 30px;
+}
+.container {
+    border: 5px solid black;
+}
