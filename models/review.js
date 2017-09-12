@@ -33,18 +33,18 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
   
-    // Review belongs to a User
-    Review.associate = function(models) {
-      Review.belongsTo(models.User, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    };
 
-    //Review also belongs to a Blog
+
+    
     Review.associate = function(models) {
+        //Review also belongs to a Blog
         Review.belongsTo(models.Blog, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+        // Review belongs to a User
+        Review.belongsTo(models.User, {
           foreignKey: {
             allowNull: false
           }
