@@ -5,7 +5,7 @@ var db = require("../models");
 var path = require("path");
 
 module.exports = function(app, auth) {
-
+    //auth.requiresLogin if want to add login
     // Send to homepage with top ten blogs displayed
     app.get("/", function(req, res) {
         console.log(req.user);

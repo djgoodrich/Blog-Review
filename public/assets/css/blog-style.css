@@ -111,3 +111,13 @@ animation-delay: -1s;
 .login {
     margin-right: 10px;
 }
+.Login-default > .text-altered { 
+    display:none; 
+}
+.Login-altered > .text-default { 
+    display:none; 
+}
+.brandlogo {
+    height: 20px;
+    width: 20px;
+}

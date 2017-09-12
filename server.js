@@ -36,7 +36,11 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var auth = new expressAuth0Simple(app); // Pass in your express app instance here 
+var auth = new expressAuth0Simple(app, {
+  auth0: {
+    scope: "openid profile"
+  }
+}); // Pass in your express app instance here 
 
 // Routes
 // =============================================================
