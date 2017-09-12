@@ -84,7 +84,7 @@ animation-delay: -1s;
     box-shadow: 10px 10px 5px #888888;
     
 }
-#title {
+.title {
     background-color: #B92828;
     color: white;
     padding: 30px;
@@ -92,11 +92,11 @@ animation-delay: -1s;
 .container {
     border: 5px solid black;
 }
-#underline {
+.underline {
     border-bottom: solid 1px black;
     margin:20px;
 }
-#indent {
+.indent {
     margin: 40px;
 }
 #userHead {
