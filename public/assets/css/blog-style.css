@@ -84,7 +84,7 @@ animation-delay: -1s;
     box-shadow: 10px 10px 5px #888888;
     
 }
-#title {
+.title {
     background-color: #B92828;
     color: white;
     padding: 30px;
@@ -96,4 +96,24 @@ animation-delay: -1s;
 .card-link:hover {
     text-decoration:none;
     color:inherit;
+}
+
+.underline {
+    border-bottom: solid 1px black;
+    margin:20px;
+}
+.indent {
+    margin: 40px;
+}
+#userHead {
+    font-family: 'Fredericka the Great', cursive ;
+    padding-left: 40px;
+    font-size: 4rem;
+}
+#indentation {
+    padding-left: 60px;
+    font-family: 'Roboto', sans-serif;
+}
+.login {
+    margin-right: 10px;
 }
