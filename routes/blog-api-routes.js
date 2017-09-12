@@ -12,10 +12,9 @@ module.exports = function(app) {
         
     // Add blog
     app.post("/api/blogs", function(req, res) {
-        console.log("hey")
         console.log(JSON.stringify(req.body))
-        // db.Blog.create(req.body).then(function(dbBlog) {
-        //     res.json(dbBlog);
-        // });
+        db.Blog.create(req.body).then(function(dbBlog) {
+            res.json(dbBlog);
+        });
     });
 };
