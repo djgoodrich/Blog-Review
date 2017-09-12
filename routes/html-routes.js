@@ -7,10 +7,10 @@ var path = require("path");
 module.exports = function(app, auth) {
 
     // Send to homepage with top ten blogs displayed
-    app.get("/", auth.requiresLogin, function(req, res) {
+    app.get("/", function(req, res) {
         console.log(req.user);
         db.Blog.findAll( {
-           limit: 10,
+           limit: 12,
            order: [['cumulative_rating', 'DESC']] 
         }).then(function(results) {
             res.render("index", {topTen: results});
