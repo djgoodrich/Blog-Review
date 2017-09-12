@@ -4,10 +4,11 @@
 var db = require("../models");
 var path = require("path");
 
-module.exports = function(app) {
+module.exports = function(app, auth) {
 
     // Send to homepage with top ten blogs displayed
-    app.get("/", function(req, res) {
+    app.get("/", auth.requiresLogin, function(req, res) {
+        console.log(req.user);
         db.Blog.findAll( {
            limit: 10,
            order: [['cumulative_rating', 'DESC']] 
