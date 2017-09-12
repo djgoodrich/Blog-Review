@@ -92,3 +92,19 @@ animation-delay: -1s;
 .container {
     border: 5px solid black;
 }
+#underline {
+    border-bottom: solid 1px black;
+    margin:20px;
+}
+#indent {
+    margin: 40px;
+}
+#userHead {
+    font-family: 'Fredericka the Great', cursive ;
+    padding-left: 40px;
+    font-size: 4rem;
+}
+#indentation {
+    padding-left: 60px;
+    font-family: 'Roboto', sans-serif;
+}
