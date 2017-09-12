@@ -29,7 +29,7 @@ svg {
     display: block;
     font: 9.5em 'Roboto';
     font-family: 'Roboto', sans-serif;
-    width: 960px;
+    width: 100%;
     height: 300px;
     margin: 0 auto;
 }
