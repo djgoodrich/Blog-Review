@@ -5,9 +5,6 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 len: [1]
-            },
-            set(val) {
-                this.setDataValue('routename', this.title.replace(/\s+/g, "").toLowerCase());
             }
         },
         website: {
@@ -32,12 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         cumulative_rating: {
             type: DataTypes.DECIMAL(3,2),
             len: [1]
-        },
-        routename: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: "",
-        } 
+        }
     },
     {
         timestamps: false 
