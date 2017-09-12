@@ -40,30 +40,18 @@ module.exports = function(app, auth) {
         
         // Get users sorted by number of reviews
         db.User.findOne({
-            include: [db.Review],
+            include: {
+                model: db.Review,
+                include: [db.Blog]
+            },
             where: {
                 name: req.params.username
             }
         }).then(function(dbUser){
             console.log(JSON.stringify(dbUser))
-           res.render("user", dbUser);
+           res.render("user", {user: dbUser});
         })
 
-    });
-    app.get("/users/:username", function(req, res) {
-        var user;
-        // Get users sorted by number of reviews
-        db.User.findOne({
-            include: [db.Review],
-            where: {
-                name: req.params.username
-            }
-        }).then(function(dbUser){
-            user = res.json(dbUser);
-        })
-        console.log(JSON.stringify(user))
-        // Send info to handlebars
-         res.render();
     });
 
 };

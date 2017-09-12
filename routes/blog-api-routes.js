@@ -10,10 +10,12 @@ module.exports = function(app) {
         });
     });  
         
-    // Add blogs
-    app.post("api/blogs", function(req, res) {
-        db.Blog.create(req.body).then(function(dbBlog) {
-            res.json(dbBlog);
-        });
+    // Add blog
+    app.post("/api/blogs", function(req, res) {
+        console.log("hey")
+        console.log(JSON.stringify(req.body))
+        // db.Blog.create(req.body).then(function(dbBlog) {
+        //     res.json(dbBlog);
+        // });
     });
 };
