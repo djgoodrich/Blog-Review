@@ -92,3 +92,8 @@ animation-delay: -1s;
 .container {
     border: 5px solid black;
 }
+
+.card-link:hover {
+    text-decoration:none;
+    color:inherit;
+}
