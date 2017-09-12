@@ -24,9 +24,6 @@ module.exports = function(app) {
                 model : db.Review,
                 include : [db.User]
             },
-            where: {
-                routename: req.params.blog_title
-            }
         }).then(function(dbBlog){
             console.log(JSON.stringify(dbBlog))
             res.render("blog", {blog : dbBlog});
