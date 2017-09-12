@@ -7,7 +7,7 @@ var path = require("path");
 module.exports = function(app, auth) {
 
     // Send to homepage with top ten blogs displayed
-    app.get("/", auth.requiresLogin, function(req, res) {
+    app.get("/", function(req, res) {
         console.log(req.user);
         db.Blog.findAll( {
            limit: 10,
@@ -40,13 +40,16 @@ module.exports = function(app, auth) {
         
         // Get users sorted by number of reviews
         db.User.findOne({
-            include: [db.Review],
+            include: {
+                model: db.Review,
+                include: [db.Blog]
+            },
             where: {
                 name: req.params.username
             }
         }).then(function(dbUser){
             console.log(JSON.stringify(dbUser))
-           res.render("user", dbUser);
+           res.render("user", {user: dbUser});
         })
 
     });
