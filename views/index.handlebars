@@ -28,19 +28,21 @@
     <div class="row">
 
         {{#each topTen}}
-        <div class="col-4">
+            <div class="col-sm-4">
+            <div class="card-deck">
             <div class="card">
                 <div class="card-body">
                     <a class="card-link" href="/blog/{{this.id}}">  
                         <h3 class="title">{{this.title}}</h3>
                     </a>
-                    <p>By: {{this.blog_author}}</p>
-                    <p>Website: <a href="{{this.website}}" target="_blank">{{this.website}}</a></p>
-                    <p>Description: {{this.description}}</p> 
-                    <p>Rating: {{this.rating}} </p>
+                    <p class="card-text">By: {{this.blog_author}}</p>
+                    <p class="card-text">Website: <a href="{{this.website}}" target="_blank">{{this.website}}</a></p>
+                    <p class="card-text">Description: {{this.description}}</p> 
+                    <p class="card-text">Rating: {{this.rating}} </p>
                 </div>
             </div>
-        </div>
+            </div>
+            </div>
         {{/each}}
 
 

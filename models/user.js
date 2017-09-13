@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
       // Giving the User model a name of type STRING
-      name: DataTypes.STRING
+      name: DataTypes.STRING,
+      sub: DataTypes.STRING
     },
     {
         timestamps: false 
@@ -13,8 +14,10 @@ module.exports = function(sequelize, DataTypes) {
       User.hasMany(models.Review, {
         onDelete: "cascade"
       });
-    };
+    };  
   
     return User;
   };
+
+
   
