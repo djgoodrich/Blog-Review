@@ -98,6 +98,37 @@
                     <p>Bacon ipsum dolor amet drumstick spare ribs turducken, bacon cow tail kielbasa jowl shank pancetta pork belly corned beef doner filet mignon. Drumstick hamburger picanha bresaola salami andouille cupim rump beef ribs venison ribeye pig kevin frankfurter. Picanha pig pork loin alcatra chuck kielbasa. Chuck picanha landjaeger pastrami, short ribs pork pork belly. Bresaola drumstick prosciutto capicola. Meatball drumstick corned beef ribeye short ribs. Pork chop capicola sausage, ball tip tri-tip salami bacon ribeye frankfurter doner drumstick. Sausage turkey venison filet mignon biltong boudin. Sirloin ribeye sausage flank, strip steak corned beef burgdoggen venison chuck tail tri-tip doner ball tip beef leberkas. Tri-tip pig filet mignon, ball tip picanha pork belly doner sausage frankfurter. T-bone prosciutto short loin, picanha corned beef meatball jerky short ribs sirloin boudin. Drumstick turkey picanha leberkas beef ribs jowl alcatra short ribs boudin flank landjaeger. Bresaola burgdoggen t-bone kielbasa spare ribs, biltong filet mignon tail jowl. Pork loin alcatra kevin corned beef ham hock prosciutto. Spare ribs cupim pastrami chuck. Cow tenderloin landjaeger sirloin filet mignon chicken tri-tip drumstick chuck. Pork kevin sirloin, tenderloin tail meatloaf strip steak spare ribs biltong. Andouille beef bacon, ham doner meatball pork prosciutto chuck salami pork chop filet mignon. Porchetta pancetta leberkas hamburger brisket. Pancetta cow tail picanha ham hock tenderloin. Frankfurter pork tongue prosciutto andouille bresaola, pork chop picanha jowl t-bone ham hock beef ribs pork belly. Corned beef shankle bresaola, drumstick turducken pork cow capicola hamburger landjaeger shank tenderloin fatback. Filet mignon landjaeger corned beef ham. Pancetta tenderloin tail porchetta alcatra jerky sausage shank filet mignon bacon frankfurter. Rump chicken bacon sirloin cow, pastrami tail prosciutto shankle pork loin boudin. Picanha kielbasa short ribs shoulder pork belly prosciutto cupim filet mignon turducken ball tip. Bacon biltong beef ribs tri-tip, prosciutto short loin porchetta cupim ribeye ham hock shank cow meatloaf alcatra. Flank capicola t-bone, porchetta short ribs meatloaf leberkas jerky ham hamburger chuck jowl. Pastrami jowl hamburger short ribs ball tip tenderloin picanha corned beef meatball fatback pork belly. Capicola tongue ball tip biltong fatback tri-tip pastrami pork loin pork frankfurter sirloin meatball short ribs strip steak.</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        {{#each burgers}} {{#unless this.devoured}}
+                        <li>
+                            {{this.burger_name}}
+        
+                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden" name="devoured" value="true">
+                                <button type "submit" class="btn btn-danger"><img src="https://www.iconexperience.com/_img/g_collection_png/standard/24x24/hamburger.png" alt ="burger icon"> DEVOUR IT!</button>
+                            </form>
+                        </li>
+                        {{/unless}} {{/each}}
+                    </ul>
+                </div>
+                <div class="col">
+                    <ol>
+                        {{#each burgers}} {{#if this.devoured}}
+        
+                        <li>
+                            {{this.burger_name}}
+        
+                            <form action="/{{this.id}}?_method=PUT" method="POST" class="text-right">
+                                <input type="hidden" name="devoured" value="false">
+                            </form>
+                        </li>
+        
+                        {{/if}} {{/each}}
+                    </ol>
+                </div>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
