@@ -27,9 +27,12 @@ module.exports = function(app) {
     });
 
     app.post("/api/reviews", function(req, res) {
-        db.Review.create(req.body).then(function(dbReview) {
-            res.json(dbReview);
-        });
+        req.body.rating = req.body.rating.charAt(0);
+        // Need to add user id
+        console.log(JSON.stringify(req.body));
+        // db.Review.create(req.body).then(function(dbReview) {
+        //     res.json(dbReview);
+        // });
     });
 
     app.delete("/api/reviews/:id", function(req, res) {

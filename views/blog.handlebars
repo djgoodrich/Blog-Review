@@ -7,6 +7,8 @@
     <p class="underline"><a href="{{blog.website}}" target="_blank">{{blog.website}}</a></p>
     <p class="indent">{{blog.description}}</p>
     <h2>Reviews</h2>
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#writeReviewModal">Write Review</button>
+
     {{#each Reviews}}
         <div class="card mt-3">
             <div class="card-body">
@@ -18,5 +20,51 @@
         </div>
     {{/each}}
  </div>
+
+ <!-- Modal -->
+<div id="writeReviewModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="writeReviewModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content addOne">
+            <div class="modal-header">
+                <h5 class="modal-title">Review for {{blog.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/api/reviews" method="POST" id="addReviewForm">            
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="rating" class="col-sm-2 col-form-label">Overall rating</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="rating" name="rating">
+                                <option>1 - greatly disliked blog</option>
+                                <option>2 - disliked blog</option>
+                                <option>3 - neutral</option>
+                                <option>4 - liked blog</option>
+                                <option>5 - greatly liked blog</option>
+                            </select>
+                        </div>
+                    </div>            
+                    <div class="form-group row">
+                        <label for="reviewTitle" class="col-sm-2 col-form-label">Review Title</label>
+                        <div class="col-sm-10" id="reviewTitleHelper">
+                            <input type="text" class="form-control" id="reviewTitle" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="reviewBody" class="col-sm-2 col-form-label">Review</label>
+                        <div class="col-sm-10" id="reviewTitleHelper">
+                            <textarea cols="50" rows="10" id="reviewBody" name="body"></textarea> 
+                        </div>
+                    </div>
+                    <input type="hidden" name="BlogId" value="{{blog.id}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit review</button>
+                </div>
+            </form>
+    </div>
+  </div>
+</div>
 
   {{> scripts/scripts}}
