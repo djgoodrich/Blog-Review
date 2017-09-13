@@ -27,12 +27,19 @@ module.exports = function(app) {
     });
 
     app.post("/api/reviews", function(req, res) {
-        req.body.rating = req.body.rating.charAt(0);
-        // Need to add user id
-        console.log(JSON.stringify(req.body));
-        // db.Review.create(req.body).then(function(dbReview) {
-        //     res.json(dbReview);
-        // });
+        db.User.findOne({
+            where: {
+                // This will be changed to "sub : req.user.sub" when auth0 is working
+                name : "Abby"
+            }
+        }).then(function(dbUser){
+            req.body.rating = req.body.rating.charAt(0);
+            req.body.UserId = dbUser.id;
+            console.log(JSON.stringify(req.body));
+            db.Review.create(req.body).then(function(dbReview) {
+                res.redirect("/blog/" + req.body.BlogId);
+            });
+        })
     });
 
     app.delete("/api/reviews/:id", function(req, res) {
@@ -41,7 +48,7 @@ module.exports = function(app) {
                 id: req.params.id
             }
         }).then(function(dbReview) {
-            res.json(dbReveiw)
+            res.json(dbReview)
         });
     });
 

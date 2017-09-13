@@ -32,9 +32,6 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     });
-  
-
-
     
     Review.associate = function(models) {
         //Review also belongs to a Blog

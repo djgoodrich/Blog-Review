@@ -14,8 +14,8 @@ $("#add-blog").on("click", function(){
 // Checks that each form value is not empty
 function isEmpty(field, event) {
     if( !$("#" + field).val() || ($("#" + field).val().trim() === "") ) {
-        $("#" + field + "Helper").append("<small class='hideOnSubmit'>This field is required.</small>")
-        return event.preventDefault();;
+        $("#" + field + "Helper").append("<small class='hideOnSubmit'>This field is required.</small>");
+        return event.preventDefault();
     };
 };
 
