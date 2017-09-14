@@ -3,9 +3,9 @@ var db = require("../models");
 module.exports = function(app, auth) {
  
     app.get("/login", auth.requiresLogin, function(req, res) {
-        console.log(req.user)
+        console.log("hello")
         .then(function(results) {
-            res.redirect("/");
+            res.redirect("/blog/1");
         });
     });
 };
