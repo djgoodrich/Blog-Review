@@ -7,11 +7,23 @@
     </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
-                <!--Modal to add a new blog-->
                 <li class="nav-item">
-                    <button class="btn btn-outline-warning" data-toggle="modal" data-target=".bd-example-modal-lg">Add Blog</button>
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <button class="btn btn-outline-warning" data-toggle="modal" 
+                    data-target={{#unless currentUserSub}}"#requiresLoginModal"{{/unless}}
+                    {{#if currentUserSub}}"#addBlogModal"{{/if}}>Add Blog</button>
+
+                    <!-- Modal that prompts sign in -->
+                    <div class="modal fade bd-example-modal-sm" id="requiresLoginModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content addOne">
+                                <p>You must log in to perform this action.</p>
+                                <a href="/login" class="card-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Modal to add a new blog-->
+                    <div class="modal fade" id="addBlogModal" tabindex="-1" role="dialog" aria-labelledby="addBlogModal" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content addOne">
                                 <form action="/api/blogs" method="POST" id="addBlogForm">
@@ -48,8 +60,10 @@
                             </div>
                         </div>
                     </div>
+
                 </li>
             </ul>
+<<<<<<< HEAD
             {{!-- <form action="/login" method="GET">
                 <input type="hidden" name="returnURL" value="/blog/2"> --}}
                 <a href="/login" class="card-link"><button type="button" id="login-btn" class="btn btn-outline-success login">Login</button></a>
@@ -57,6 +71,17 @@
             <form class="form-inline my-2 my-lg-0" action="/searchBlogs" method="POST">
                 <input class="form-control mr-sm-2" id="searchBlogs" type="text" placeholder="Search for a blog" aria-label="Search" name="blogResult">
                 <button class="btn btn-outline-primary my-2 my-sm-0" id="submitBtn" type="submit" value="Search">Search</button>
+=======
+            {{#unless currentUserSub}}
+            <a href="/login" class="card-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
+            {{/unless}}
+            {{#if currentUserSub}}
+            <a href="/logout" class="card-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>
+            {{/if}}
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search for a blog" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+>>>>>>> 91e9b0d3926ad0a46917adad09172d2ab2f8817a
             </form>
         </div>
     </nav>

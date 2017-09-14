@@ -60,7 +60,7 @@ var auth = new expressAuth0Simple(app, {
     scope: "openid profile",
   }, 
   successRedirect : "/login"
-}); // Pass in your express app instance here 
+}); 
 
 // Routes
 // =============================================================
