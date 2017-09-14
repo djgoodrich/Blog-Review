@@ -53,5 +53,21 @@ module.exports = function(app, auth) {
         })
 
     });
-
+    app.post("/searchBlogs", function(req, res) {
+        req.body.blogResult = req.body.blogResult.trim();
+        db.Blog.findAll({
+            include: {
+                model : db.Review,
+                include : [db.User]
+            },
+            where: {
+                title: {
+                    like: "%" + req.body.blogResult + "%"
+                }
+            }
+        }).then(function(dbBlog){
+            console.log(JSON.stringify(dbBlog))
+            res.render("blog", {blog : dbBlog});
+        });
+    });
 };

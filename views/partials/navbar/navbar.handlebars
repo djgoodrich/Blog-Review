@@ -54,9 +54,9 @@
                 <input type="hidden" name="returnURL" value="/blog/2"> --}}
                 <a href="/login" class="card-link"><button type="button" id="login-btn" class="btn btn-outline-success login">Login</button></a>
             {{!-- </form> --}}
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search for a blog" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" action="/searchBlogs" method="POST">
+                <input class="form-control mr-sm-2" id="searchBlogs" type="text" placeholder="Search for a blog" aria-label="Search" name="blogResult">
+                <button class="btn btn-outline-primary my-2 my-sm-0" id="submitBtn" type="submit" value="Search">Search</button>
             </form>
         </div>
     </nav>
