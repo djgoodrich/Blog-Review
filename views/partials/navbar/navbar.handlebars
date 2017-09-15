@@ -67,15 +67,16 @@
 
                 </li>
             </ul>
+            
+            <form action="/searchBlogs" method="POST" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search for a blog" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0 submitBtn" type="submit">Search</button>
+            </form>
             {{#unless currentUserSub}}
             <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
             {{/unless}}
             {{#if currentUserSub}}
             <a href="/logout" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>
             {{/if}}
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search for a blog" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
     </nav>
