@@ -49,7 +49,7 @@ module.exports = function(app, auth) {
    });
 
     // Send to user page with list of reviews/ratings; if you are the user whose page you are on, you can edit any of your reviews from here.
-    app.get("/user/:username", function(req, res) {
+    app.get("/user/:id", function(req, res) {
         var userSub;
         if(req.user) {
             userSub = req.user._json.sub
@@ -61,7 +61,7 @@ module.exports = function(app, auth) {
                 include: [db.Blog]
             },
             where: {
-                name: req.params.username
+                id: req.params.id
             }
         }).then(function(dbUser){
             console.log(JSON.stringify(dbUser))

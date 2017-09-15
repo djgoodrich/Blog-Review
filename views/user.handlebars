@@ -6,7 +6,7 @@
     {{#each user.Reviews}}
         <div class="card mt-3">
             <div class="card-body" >
-                <h3 class="title">{{this.title}}</h3>
+                <h3 class="title"><a href="blog/{{this.Blog.id}}" class="no-decoration-link">{{this.Blog.title}}</a></h3>
   <!-- Modal -->
 
  <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalLong">Edit Review</button>
@@ -30,8 +30,7 @@
   </div>
 </div>
 
-                <!-- Need to also include Blog table -->
-                <h4 class="underline"><em>{{this.Blog.title}}</em></h4>
+                <h4 class="underline"><em>{{this.title}}</em></h4>
                 <p class="indent">{{this.body}}</p>
             </div>
         </div>
