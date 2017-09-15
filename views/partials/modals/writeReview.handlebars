@@ -60,3 +60,17 @@
     </div>
 </div>
 
+<script>
+  $("#writeReviewModal").on("show.bs.modal", function (event) {
+    $.get("api/review/by/" + {{currentUserSub}}, function(data) {
+        
+        // If there is already a review by this user...
+        if(data) {
+            // Update the modal's content with message: you already wrote a review
+            var modal = $(this);
+            modal.("#addReviewForm").remove();
+            //modal.find(".modal-content").load("/modal/" + itemId);
+        };
+    });
+  });
+</script>

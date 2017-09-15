@@ -27,6 +27,9 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         bothTitleAndBodyOrNone() {
           if ((this.title === null) !== (this.body === null)) {
+            app.get('/flash', function(req, res){
+              res.redirect('/');
+            });
             throw new Error('Require either both title and body or neither')
           }
         }

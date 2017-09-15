@@ -1,19 +1,16 @@
 var db = require("../models");
 
 module.exports = function(app) {
-    // app.get("/api/reviews", function(req, res) {
-    //     var query = {};
-    //     if (req.query.review_id) {
-    //         query.ReviewId = req.query.review_id;
-    //     }
+    app.get("/api/review/by/:userId", function(req, res) {
 
-    //     db.Review.findAll({
-    //         where: query, 
-    //         include: [db.Blog]
-    //     }).then(function(dbReview) {
-    //         res.json(dbReview);
-    //     });
-    // });
+        db.Review.findOne({
+            where: {
+                UserId : req.params.userId
+            }
+        }).then(function(dbReview) {
+            res.json(dbReview);
+        });
+    });
 
     app.get("/api/reviews/:id", function(req, res) {
         db.Review.findOne({

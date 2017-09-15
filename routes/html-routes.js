@@ -101,7 +101,6 @@ module.exports = function(app, auth) {
             currentUserSub: userSub
           });
         } else {
-            console.log("working else")
           res.render("searchResults", {
             blogs: dbBlog,
             foundResults: true,

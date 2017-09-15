@@ -17,10 +17,10 @@
             </li>
             <li class="nav-item">
                 <button class="btn btn-outline-danger margin-btn" data-toggle="modal" data-target={{#unless currentUserSub}}
-                    "#requiresLoginModal"{{/unless}}{{#if currentUserSub}} "#writeReviewModal"{{/if}}>Write A Review</button> 
+                    "#requiresLoginModal"{{/unless}}{{#if currentUserSub}} "#writeReviewSearchModal"{{/if}}>Write A Review</button> 
                 {{#if currentUserSub}}
                 <!-- Modal that prompts sign in -->
-                <div class="modal fade" id="writeReviewModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
+                <div class="modal fade" id="writeReviewSearchModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content addOne">
                             <form action="/searchBlogs" method="POST" class="form-inline">
