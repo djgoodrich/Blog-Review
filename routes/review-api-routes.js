@@ -43,34 +43,40 @@ module.exports = function(app) {
                 // Adds user id as FK to the Review to associate it with the user submitting the review
                 req.body.UserId = dbUser.id;
                 req.body.rating = parseFloat(req.body.rating);
-                db.Review.create(req.body).then(function(dbReview) {
-                    // Gets the blog's current total review count and cumulative rating.
-                    db.Blog.findOne({
-                        where: {
-                            id : req.body.BlogId
-                        }
-                    }).then(function(dbBlog){
-                        var newReviewCount = 1;
-                        var newRating = req.body.rating;                   
-                        if (dbBlog.total_reviews){
-                            newReviewCount += dbBlog.total_reviews;
-                            newRating = (dbBlog.cumulative_rating * dbBlog.total_reviews + newRating) / (newReviewCount);
-                        };
-                        // Updates the blog's total review count and cumulative rating.
-                        db.Blog.update(
-                            {
-                                total_reviews: newReviewCount,
-                                cumulative_rating: newRating
-                            },
-                            {
-                            where : {
+                try {
+                    db.Review.create(req.body).then(function(dbReview) {
+                        // Gets the blog's current total review count and cumulative rating.
+                        db.Blog.findOne({
+                            where: {
                                 id : req.body.BlogId
                             }
-                        }).then(function(dbUpdatedBlog){
-                            res.redirect("/blog/" + req.body.BlogId);
+                        }).then(function(dbBlog){
+                            var newReviewCount = 1;
+                            var newRating = req.body.rating;                   
+                            if (dbBlog.total_reviews){
+                                newReviewCount += dbBlog.total_reviews;
+                                newRating = (dbBlog.cumulative_rating * dbBlog.total_reviews + newRating) / (newReviewCount);
+                            };
+                            // Updates the blog's total review count and cumulative rating.
+                            db.Blog.update(
+                                {
+                                    total_reviews: newReviewCount,
+                                    cumulative_rating: newRating
+                                },
+                                {
+                                where : {
+                                    id : req.body.BlogId
+                                }
+                            }).then(function(dbUpdatedBlog){
+                                res.redirect("/blog/" + req.body.BlogId);
+                            })
                         })
-                    })
-                });
+                    });
+                } catch (err) {
+                    res.json({
+                        message: err.message
+                    })                    
+                }
             } else {
                 // Inform user that review has already been submitted; redirect to edit review.
                 console.log("A review has already been submitted")
