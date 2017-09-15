@@ -25,6 +25,9 @@ html, body{
 .submitBtn {
     margin-right: 10px;
 }
+.margin-btn {
+    margin-left: 10px;
+}
 .btnStyle {
     color: #B92828;
     background-color: white;
@@ -33,6 +36,13 @@ html, body{
 .btnStyle:hover {
     color: white;
     background-color: #B92828;
+}
+.btnInModal {
+    margin-right: 10px;
+}
+.widenIt {
+    width: 400px!important;
+    margin-right: 10px;
 }
 
 svg {
