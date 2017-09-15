@@ -1,13 +1,11 @@
-.navbar-brand {
-	font-family: 'Fredericka the Great', cursive ;
-}
 .addOne {
 	padding: 30px;
 }
 .topBlogs {
 	padding: 30px;
 	border-bottom: solid 1px black;
-	font-family: 'Fredericka the Great', cursive;
+    font-family: 'Fredericka the Great', cursive;
+    font-size:40px;
 }
 
 .blogRoll {
@@ -23,6 +21,18 @@ html, body{
 .header{
   background: #000;
   font-family: 'Roboto', sans-serif;
+}
+.submitBtn {
+    margin-right: 10px;
+}
+.btnStyle {
+    color: #B92828;
+    background-color: white;
+    border: 1px solid #B92828;
+}
+.btnStyle:hover {
+    color: white;
+    background-color: #B92828;
 }
 
 svg {
@@ -77,20 +87,33 @@ animation-delay: -1s;
 }
 .card {
     border: 0;
+    box-shadow: 10px 10px 5px #888888;
+    margin-bottom: 15px;
+    margin-top: 15px; 
 }
 .card-body {
     font-family: 'Fredericka the Great', cursive;
     margin-bottom: 40px;
-    box-shadow: 10px 10px 5px #888888;
     
+}
+.card-text {
+    font-family: "Roboto", sans-serif;
 }
 .title {
     background-color: #B92828;
     color: white;
     padding: 30px;
 }
+.title:hover{
+    box-shadow: 0px 5px 7px -2px rgba(0, 0, 0, 0.4);
+}
+
 .container {
-    border: 5px solid black;
+    box-shadow: 10px 10px 5px #888888, -5px 10px 5px #888888;
+}
+
+.background-main {
+    background-color: lightgrey;
 }
 
 .colored-link {

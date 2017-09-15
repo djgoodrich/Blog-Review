@@ -73,20 +73,16 @@ module.exports = function(app, auth) {
 
     });
     app.post("/searchBlogs", function(req, res) {
-        req.body.blogResult = req.body.blogResult.trim();
+        req.body.keyword = req.body.keyword.trim();
         db.Blog.findAll({
-            include: {
-                model : db.Review,
-                include : [db.User]
-            },
             where: {
                 title: {
-                    like: "%" + req.body.blogResult + "%"
+                    like: "%" + req.body.keyword + "%"
                 }
             }
         }).then(function(dbBlog){
             console.log(JSON.stringify(dbBlog))
-            res.render("blog", {blog : dbBlog});
+            res.render("searchResults", {blogs : dbBlog});
         });
     });
 };
