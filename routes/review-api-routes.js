@@ -1,44 +1,80 @@
 var db = require("../models");
 
 module.exports = function(app) {
-    app.get("/api/reviews", function(req, res) {
-        var query = {};
-        if (req.query.review_id) {
-            query.ReviewId = req.query.review_id;
-        }
+    // app.get("/api/reviews", function(req, res) {
+    //     var query = {};
+    //     if (req.query.review_id) {
+    //         query.ReviewId = req.query.review_id;
+    //     }
 
-        db.Review.findAll({
-            where: query, 
-            include: [db.Review]
-        }).then(function(dbReview) {
-            res.json(dbReview);
-        });
-    });
+    //     db.Review.findAll({
+    //         where: query, 
+    //         include: [db.Blog]
+    //     }).then(function(dbReview) {
+    //         res.json(dbReview);
+    //     });
+    // });
 
     app.get("/api/reviews/:id", function(req, res) {
         db.Review.findOne({
             where: {
                 id: req.params.id
             },
-            include: [db.Review]
+            include: [db.Blog]
         }).then(function(dbReview) {
             res.json(dbReview);
         });
     });
 
     app.post("/api/reviews", function(req, res) {
+        // Gets the user id using the user sub from auth0
         db.User.findOne({
             where: {
-                // This will be changed to "sub : req.user.sub" when auth0 is working
                 sub : req.user._json.sub
-            }
+            }, 
+            include : [db.Review]
         }).then(function(dbUser){
-            req.body.rating = req.body.rating.charAt(0);
-            req.body.UserId = dbUser.id;
-            console.log(JSON.stringify(req.body));
-            db.Review.create(req.body).then(function(dbReview) {
-                res.redirect("/blog/" + req.body.BlogId);
+            // Need to find the index of the array element that has id = to the blog currently being reviewed, if exists.
+            var result = dbUser.Reviews.filter(function(obj) {
+                console.log(obj.BlogId);
+                return obj.BlogId == req.body.BlogId;
             });
+            if(typeof result[0] === "undefined") {
+                // Adds user id as FK to the Review to associate it with the user submitting the review
+                req.body.UserId = dbUser.id;
+                req.body.rating = parseFloat(req.body.rating);
+                db.Review.create(req.body).then(function(dbReview) {
+                    // Gets the blog's current total review count and cumulative rating.
+                    db.Blog.findOne({
+                        where: {
+                            id : req.body.BlogId
+                        }
+                    }).then(function(dbBlog){
+                        var newReviewCount = 1;
+                        var newRating = req.body.rating;                   
+                        if (dbBlog.total_reviews){
+                            newReviewCount += dbBlog.total_reviews;
+                            newRating = (dbBlog.cumulative_rating * dbBlog.total_reviews + newRating) / (newReviewCount);
+                        };
+                        // Updates the blog's total review count and cumulative rating.
+                        db.Blog.update(
+                            {
+                                total_reviews: newReviewCount,
+                                cumulative_rating: newRating
+                            },
+                            {
+                            where : {
+                                id : req.body.BlogId
+                            }
+                        }).then(function(dbUpdatedBlog){
+                            res.redirect("/blog/" + req.body.BlogId);
+                        })
+                    })
+                });
+            } else {
+                // Inform user that review has already been submitted; redirect to edit review.
+                console.log("A review has already been submitted")
+            }
         })
     });
 

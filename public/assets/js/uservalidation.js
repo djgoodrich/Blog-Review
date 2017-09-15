@@ -1,6 +1,7 @@
 /**********************************************
 USER VALIDATION
 **********************************************/
+
 // Validate the add blog fields
 $("#add-blog").on("click", function(){
     $(".hideOnSubmit").remove();
