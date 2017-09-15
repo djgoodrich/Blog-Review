@@ -93,7 +93,20 @@ animation-delay: -1s;
     border: 5px solid black;
 }
 
-.card-link:hover {
+.colored-link {
+    color:#B92828;
+}
+
+.colored-link:hover {
+    color:#992121;
+    text-decoration:none;
+}
+
+.no-decoration-link {
+    color:inherit;
+}
+
+.no-decoration-link:hover {
     text-decoration:none;
     color:inherit;
 }

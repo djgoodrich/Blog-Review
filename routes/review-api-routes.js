@@ -21,7 +21,7 @@ module.exports = function(app) {
                 id: req.params.id
             },
             include: [db.Review]
-        }).then(function(dbReveiw) {
+        }).then(function(dbReview) {
             res.json(dbReview);
         });
     });
@@ -30,7 +30,7 @@ module.exports = function(app) {
         db.User.findOne({
             where: {
                 // This will be changed to "sub : req.user.sub" when auth0 is working
-                name : "Abby"
+                sub : req.user._json.sub
             }
         }).then(function(dbUser){
             req.body.rating = req.body.rating.charAt(0);

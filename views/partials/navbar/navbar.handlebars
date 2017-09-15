@@ -12,16 +12,19 @@
                     data-target={{#unless currentUserSub}}"#requiresLoginModal"{{/unless}}
                     {{#if currentUserSub}}"#addBlogModal"{{/if}}>Add Blog</button>
 
+                    {{#unless currentUserSub}}
                     <!-- Modal that prompts sign in -->
-                    <div class="modal fade bd-example-modal-sm" id="requiresLoginModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
+                    <div class="modal fade" id="requiresLoginModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content addOne">
                                 <p>You must log in to perform this action.</p>
-                                <a href="/login" class="card-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
+                                <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
                             </div>
                         </div>
                     </div>
+                    {{/unless}}
 
+                    {{#if currentUserSub}}
                     <!--Modal to add a new blog-->
                     <div class="modal fade" id="addBlogModal" tabindex="-1" role="dialog" aria-labelledby="addBlogModal" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -60,14 +63,15 @@
                             </div>
                         </div>
                     </div>
+                    {{/if}}
 
                 </li>
             </ul>
             {{#unless currentUserSub}}
-            <a href="/login" class="card-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
+            <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
             {{/unless}}
             {{#if currentUserSub}}
-            <a href="/logout" class="card-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>
+            <a href="/logout" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>
             {{/if}}
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search for a blog" aria-label="Search">

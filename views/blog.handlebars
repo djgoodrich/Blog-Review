@@ -5,20 +5,36 @@
     <p class="underline"><a href="{{blog.website}}" target="_blank">{{blog.website}}</a></p>
     <p class="indent">{{blog.description}}</p>
     <h2>Reviews</h2>
-    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#writeReviewModal">Write Review</button>    {{#each Reviews}}
+    <button type="button" class="btn btn-warning" data-toggle="modal" 
+        data-target={{#unless currentUserSub}}"#requiresLoginModal"{{/unless}}
+        {{#if currentUserSub}}"#writeReviewModal"{{/if}}>Write Review
+    </button>    
+    {{#each blog.Reviews}}
     <div class="card mt-3">
         <div class="card-body">
-            <h3>{{this.title}}</h3>
-            <!-- Need to also include User table -->
-            <h4><em>Author</em></h4>
+            <h3 class="title">{{this.title}}</h3>
+            <h4><em><a class="colored-link" href="/user/{{this.User.id}}">{{this.User.name}}</a></em></h4>
             <p>{{this.body}}</p>
         </div>
     </div>
     {{/each}}
 </div>
 
-<!-- Modal -->
-<div id="writeReviewModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="writeReviewModal"
+{{#unless currentUserSub}}
+<!-- Modal that prompts sign in -->
+<div class="modal fade" id="requiresLoginModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content addOne">
+            <p>You must log in to perform this action.</p>
+            <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
+        </div>
+    </div>
+</div>
+{{/unless}}
+
+<!-- Modal to write a review-->
+{{#if currentUserSub}}
+<div id="writeReviewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="writeReviewModal"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content addOne">
@@ -70,6 +86,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="BlogId" value="{{blog.id}}">
+                    <input type="hidden" name="userSub" value="{{currentUserSub}}">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Submit review</button>
@@ -78,5 +95,6 @@
         </div>
     </div>
 </div>
+{{/if}}
 
 {{> scripts/scripts}}
