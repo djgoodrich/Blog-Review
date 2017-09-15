@@ -1,5 +1,6 @@
 <script>
     localStorage.setItem("returnURL", window.location.href);
+
 </script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/"><img src="http://static.tumblr.com/9d8544b08a0439a9bac2fc1009555802/pk0ells/dDqmgt12d/tumblr_static_blog_logo.png" width="30" height="30" alt=""></a>
@@ -7,82 +8,32 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <button class="btn btn-outline-warning" data-toggle="modal" data-target={{#unless currentUserSub}} "#requiresLoginModal"{{/unless}}
-                    {{#if currentUserSub}} "#addBlogModal"{{/if}}>Add Blog</button> {{#unless currentUserSub}}
-                <!-- Modal that prompts sign in -->
-                <div class="modal fade" id="requiresLoginModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content addOne">
-                            <p>You must log in to perform this action.</p>
-                            <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
-                        </div>
-                    </div>
-                </div>
-                {{/unless}} {{#if currentUserSub}}
-                <!--Modal to add a new blog-->
-                <div class="modal fade" id="addBlogModal" tabindex="-1" role="dialog" aria-labelledby="addBlogModal" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content addOne">
-                            <form action="/api/blogs" method="POST" id="addBlogForm">
-                                <div class="form-group row">
-                                    <label for="blogTitle" class="col-sm-2 col-form-label">Blog Title*</label>
-                                    <div class="col-sm-10" id="blogTitleHelper">
-                                        <input type="text" class="form-control" id="blogTitle" name="title" placeholder="Title">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="website" class="col-sm-2 col-form-label">Website*</label>
-                                    <div class="col-sm-10" id="websiteHelper">
-                                        <input type="text" class="form-control" id="website" name="website" placeholder="http://example.com">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="description" class="col-sm-2 col-form-label">Description*</label>
-                                    <div class="col-sm-10" id="descriptionHelper">
-                                        <input type="text" class="form-control" name="description" id="description">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="blogAuthor" class="col-sm-2 col-form-label">Blog Author*</label>
-                                    <div class="col-sm-10" id="blogAuthorHelper">
-                                        <input type="text" class="form-control" name="blog_author" id="blogAuthor">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-outline-danger" id="add-blog">Add</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                {{/if}}
-
+                    {{#if currentUserSub}} "#addBlogModal"{{/if}}>Add Blog</button> 
             </li>
             <li class="nav-item">
                 <button class="btn btn-outline-danger margin-btn" data-toggle="modal" data-target={{#unless currentUserSub}}
-                    "#requiresLoginModal"{{/unless}}{{#if currentUserSub}}"#writeReviewModal"{{/if}}>Write A Review</button> {{#if
-                currentUserSub}}
+                    "#requiresLoginModal"{{/unless}}{{#if currentUserSub}} "#writeReviewModal"{{/if}}>Write A Review</button> 
+                {{#if currentUserSub}}
                 <!-- Modal that prompts sign in -->
                 <div class="modal fade" id="writeReviewModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content addOne">
                             <form action="/searchBlogs" method="POST" class="form-inline">
-                            
+
                                 <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
                                 <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit">Search</button>
-                            
+
                             </form>
                         </div>
                     </div>
                 </div>
                 {{/if}}
         </ul>
-
         <form action="/searchBlogs" method="POST" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search for a blog" aria-label="Search">
             <button class="btn btn-outline-primary my-2 my-sm-0 submitBtn" type="submit">Search</button>
@@ -92,3 +43,6 @@
         <a href="/logout" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>        {{/if}}
     </div>
 </nav>
+
+
+{{#unless currentUserSub}} {{> modals/requiresLogin}} {{/unless}} {{#if currentUserSub}} {{> modals/addBlog}} {{/if}}

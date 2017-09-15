@@ -1,41 +1,5 @@
-<div class="container">
-    {{> navbar/navbar}} {{#each blogs}}
-    <h1 class="mt-3 mb-3 title">{{title}}</h1>
-    <p class="underline"><a href="{{website}}" target="_blank">{{website}}</a></p>
-    <p class="indent">{{description}}</p>
-    {{/each}}
-    <!-- Add cumulative rating later -->
-
-   {{#if foundResults}} 
-    <h2>Reviews</h2>
-    <button type="button" class="btn btn-warning" data-toggle="modal" data-target={{#unless currentUserSub}}
-        "#requiresLoginModal"{{/unless}} {{#if currentUserSub}} "#writeReviewModal"{{/if}}>Write Review
-    </button> {{#each blog.Reviews}}
-    <div class="card mt-3">
-        <div class="card-body">
-            <h3 class="title">{{this.title}}</h3>
-            <h4><em><a class="colored-link" href="/user/{{this.User.id}}">{{this.User.name}}</a></em></h4>
-            <p>{{this.body}}</p>
-        </div>
-    </div>
-    {{/each}}
-</div>
-
-{{#unless currentUserSub}}
-<!-- Modal that prompts sign in -->
-<div class="modal fade" id="requiresLoginModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content addOne">
-            <p>You must log in to perform this action.</p>
-            <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>
-        </div>
-    </div>
-</div>
-{{/unless}}
-
-<!-- Modal to write a review-->
-{{#if currentUserSub}}
-<div id="writeReviewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="writeReviewModal" aria-hidden="true">
+<div id="writeReviewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="writeReviewModal"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content addOne">
             <div class="modal-header">
@@ -96,9 +60,3 @@
     </div>
 </div>
 
-{{/if}}
-{{/if}}
-{{#unless foundResults}}
-    <p>The blog has not been added Yet!  Click on Add Blog to Add and Review.</p>
-    {{/unless}}
- {{> scripts/scripts}}
