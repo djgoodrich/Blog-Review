@@ -45,4 +45,9 @@
 </nav>
 
 
-{{#unless currentUserSub}} {{> modals/requiresLogin}} {{/unless}} {{#if currentUserSub}} {{> modals/addBlog}} {{/if}}
+{{#unless currentUserSub}} 
+    {{> modals/requiresLogin}} 
+{{/unless}} 
+{{#if currentUserSub}} 
+    {{> modals/addBlog}} 
+{{/if}}
