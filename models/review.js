@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }, 
       rating: {
-          type: DataTypes.DECIMAL(3,2),
+          type: DataTypes.DECIMAL(2,1),
           allowNull: false,
           len: [1]
       },

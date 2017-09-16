@@ -12,7 +12,6 @@ module.exports = function(app, auth) {
     if (req.user) {
       userSub = req.user._json.sub;
     }
-    console.log(userSub);
     db.Blog
       .findAll({
         limit: 12,
@@ -44,7 +43,6 @@ module.exports = function(app, auth) {
         }
       })
       .then(function(dbBlog) {
-        console.log(JSON.stringify(dbBlog));
         res.render("blog", {
           blog: dbBlog,
           currentUserSub: userSub
@@ -70,7 +68,6 @@ module.exports = function(app, auth) {
         }
       })
       .then(function(dbUser) {
-        console.log(JSON.stringify(dbUser));
         res.render("user", {
           user: dbUser,
           currentUserSub: userSub

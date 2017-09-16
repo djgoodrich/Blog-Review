@@ -7,6 +7,7 @@
 require('dotenv').config();
 var express = require("express");
 var bodyParser = require("body-parser");
+var methodOverride = require('method-override')
 var expressAuth0Simple = require('express-auth0-simple'); // Import the middleware library 
 
 // Sets up the Express App
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(methodOverride("_method"));
 
 var exphbs = require("express-handlebars");
 
@@ -52,7 +54,7 @@ require("./routes/user-api-routes.js")(app,auth);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force:true}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
