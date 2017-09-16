@@ -62,14 +62,14 @@
   $("#writeReviewModal").on("show.bs.modal", function (event) {
       var userSub = $(this).attr("data-user-sub");
       var blogId = $(this).attr("data-blog-id");
-      $.get("/api/review/" + blogId + "/" + userSub, function(data) {
+      $.get("/api/review/check/" + blogId + "/" + userSub, function(reviewData) {
         // If there is already a review by this user...
-        if(data) {
-            // Update the modal's content with message: you already wrote a review
-            console.log(data.title)
+        if(reviewData) {
+            // Update the modal's content, alerting user that review already exists, and show edit modal.
+            console.log(reviewData.title)
             $("#addReviewForm").remove();
             $("#addReviewForm, .modal-body").append("<h5>You have already written a review for this movie. Use the form below to edit it.</h5>")
-            .load("/api/review/edit" + data.id);
+            $("#addReviewForm, .modal-body").load("/api/review/edit/" + reviewData.id);
         };
     });
   });

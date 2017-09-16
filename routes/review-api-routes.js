@@ -53,7 +53,17 @@ module.exports = function(app) {
         })
     });
 
-    app.get("/api/review/:blogId/:sub", function(req, res) {
+    app.get("/api/review/edit/:id", function(req, res){
+        db.Review.findOne({
+            where: {
+                id : req.params.id
+            }
+        }).then(function(dbReview){
+            res.render("partials/modals/editReview", {review : dbReview});
+        })
+    });
+
+    app.get("/api/review/check/:blogId/:sub", function(req, res) {
         // Finds the user
         db.User.findOne({
             where: {
@@ -73,17 +83,6 @@ module.exports = function(app) {
         });
     });
 
-    app.get("api/review/edit/:id", function(req, res){
-        db.Review.findOne({
-            where: {
-                id : req.params.id
-            }
-        }).then(function(dbReview){
-            // Send info back to modal
-        })
-    });
-
-
     app.delete("/api/review/:id", function(req, res) {
         db.Review.destroy({
             where: {
@@ -94,7 +93,7 @@ module.exports = function(app) {
         });
     });
 
-    app.put("/api/reviews/:id", function(req, res) {
+    app.put("/api/review/:id", function(req, res) {
         db.Review.update({
             rating: req.body.rating,
             title: req.body.title,
@@ -104,7 +103,8 @@ module.exports = function(app) {
                 id: req.params.id
             }
         }).then(function(dbUpdatedReview) {
-            res.json(dbUpdatedReview);
+            console.log(JSON.stringify(dbUpdatedReview))
+            res.redirect("/blog/" + req.body.BlogId);
         });
     });
 }

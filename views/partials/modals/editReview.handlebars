@@ -1,8 +1,8 @@
-<form action="/api/reviews/{{review.id}}?_method=PUT" method="POST" id="editReviewForm">
+<form action="/api/review/{{review.id}}?_method=PUT" method="POST" id="editReviewForm">
     <div class="form-group row">
         <label for="rating" class="col-sm-2 col-form-label">Overall rating</label>
         <div class="col-sm-10">
-            <fieldset class="rating">
+            <fieldset class="rating" data-rating="{{review.rating}}">
                 <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"
                     title="Awesome - 5 stars"></label>
                 <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half"
@@ -35,8 +35,21 @@
     <div class="form-group row">
         <label for="reviewBody" class="col-sm-2 col-form-label">Review</label>
         <div class="col-sm-10" id="reviewTitleHelper">
-            <textarea cols="50" rows="10" id="reviewBody" name="body" value="{{review.body}}"></textarea>
+            <textarea cols="50" rows="10" id="reviewBody" name="body">{{review.body}}</textarea>
         </div>
     </div>
+    <input type="hidden" name="BlogId" value="{{review.BlogId}}">
     <button type="submit" class="btn btn-primary">Update review</button>
 </form>
+
+<script>
+    var rating = $("fieldset").attr("data-rating");
+    console.log(rating)
+    if (rating.charAt(2)== "0") {
+        rating = rating.charAt(0)
+    } else {
+        rating = rating.charAt(0) + ".5"
+    }
+    console.log(rating)
+    $("input[name='rating'][value='" + rating + "']").attr("checked", "checked")
+</script>

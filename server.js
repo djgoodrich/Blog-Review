@@ -7,6 +7,7 @@
 require('dotenv').config();
 var express = require("express");
 var bodyParser = require("body-parser");
+var methodOverride = require('method-override')
 var expressAuth0Simple = require('express-auth0-simple'); // Import the middleware library 
 
 // Sets up the Express App
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(methodOverride("_method"));
 
 var exphbs = require("express-handlebars");
 
