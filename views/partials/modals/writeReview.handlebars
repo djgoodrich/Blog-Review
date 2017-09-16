@@ -1,5 +1,5 @@
 <div id="writeReviewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="writeReviewModal"
-    aria-hidden="true">
+    aria-hidden="true" data-user-sub="{{currentUserSub}}" data-blog-id="{{blog.id}}"> 
     <div class="modal-dialog modal-lg">
         <div class="modal-content addOne">
             <div class="modal-header">
@@ -8,8 +8,8 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/api/reviews" method="POST" id="addReviewForm">
-                <div class="modal-body">
+            <div class="modal-body">
+                <form action="/api/reviews" method="POST" id="addReviewForm">
                     <div class="form-group row">
                         <label for="rating" class="col-sm-2 col-form-label">Overall rating</label>
                         <div class="col-sm-10">
@@ -27,9 +27,9 @@
                                 <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half"
                                     for="star2half" title="Kinda bad - 2.5 stars"></label>
                                 <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"
-                                    title="Kinda bad - 2 stars"></label>
+                                    title="Bad - 2 stars"></label>
                                 <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half"
-                                    for="star1half" title="Meh - 1.5 stars"></label>
+                                    for="star1half" title="Bad - 1.5 stars"></label>
                                 <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
                                     title="Sucks big time - 1 star"></label>
                                 <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf"
@@ -51,25 +51,25 @@
                     </div>
                     <input type="hidden" name="BlogId" value="{{blog.id}}">
                     <input type="hidden" name="userSub" value="{{currentUserSub}}">
-                </div>
-                <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Submit review</button>
-                </div>
-            </form>
+                </form>
+            </div> 
         </div>
     </div>
 </div>
 
 <script>
   $("#writeReviewModal").on("show.bs.modal", function (event) {
-    $.get("api/review/by/" + {{currentUserSub}}, function(data) {
-        
+      var userSub = $(this).attr("data-user-sub");
+      var blogId = $(this).attr("data-blog-id");
+      $.get("/api/review/" + blogId + "/" + userSub, function(data) {
         // If there is already a review by this user...
         if(data) {
             // Update the modal's content with message: you already wrote a review
-            var modal = $(this);
-            modal.("#addReviewForm").remove();
-            //modal.find(".modal-content").load("/modal/" + itemId);
+            console.log(data.title)
+            $("#addReviewForm").remove();
+            $("#addReviewForm, .modal-body").append("<h5>You have already written a review for this movie. Use the form below to edit it.</h5>")
+            .load("/api/review/edit" + data.id);
         };
     });
   });

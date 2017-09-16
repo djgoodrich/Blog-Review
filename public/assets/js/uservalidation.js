@@ -22,4 +22,3 @@ function isEmpty(field, event) {
         return event.preventDefault();
     };
 };
-
