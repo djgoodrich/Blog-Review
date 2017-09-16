@@ -3,23 +3,23 @@
         <label for="rating" class="col-sm-2 col-form-label">Overall rating</label>
         <div class="col-sm-10">
             <fieldset class="rating" data-rating="{{review.rating}}">
-                <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"
+                <input type="radio" id="star5" name="rating" value="5.0" /><label class="full" for="star5"
                     title="Awesome - 5 stars"></label>
                 <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half"
                     for="star4half" title="Pretty good - 4.5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"
+                <input type="radio" id="star4" name="rating" value="4.0" /><label class="full" for="star4"
                     title="Pretty good - 4 stars"></label>
                 <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half"
                     for="star3half" title="Meh - 3.5 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3"
+                <input type="radio" id="star3" name="rating" value="3.0" /><label class="full" for="star3"
                     title="Meh - 3 stars"></label>
                 <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half"
                     for="star2half" title="Kinda bad - 2.5 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"
+                <input type="radio" id="star2" name="rating" value="2.0" /><label class="full" for="star2"
                     title="Bad - 2 stars"></label>
                 <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half"
                     for="star1half" title="Bad - 1.5 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
+                <input type="radio" id="star1" name="rating" value="1.0" /><label class="full" for="star1"
                     title="Sucks big time - 1 star"></label>
                 <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf"
                     title="Sucks big time - 0.5 stars"></label>
@@ -38,18 +38,13 @@
             <textarea cols="50" rows="10" id="reviewBody" name="body">{{review.body}}</textarea>
         </div>
     </div>
+    <input type="hidden" name="pastRating">
     <input type="hidden" name="BlogId" value="{{review.BlogId}}">
     <button type="submit" class="btn btn-primary">Update review</button>
 </form>
 
 <script>
     var rating = $("fieldset").attr("data-rating");
-    console.log(rating)
-    if (rating.charAt(2)== "0") {
-        rating = rating.charAt(0)
-    } else {
-        rating = rating.charAt(0) + ".5"
-    }
-    console.log(rating)
+    $("input[name='pastRating'").attr("value", rating)
     $("input[name='rating'][value='" + rating + "']").attr("checked", "checked")
 </script>

@@ -103,8 +103,29 @@ module.exports = function(app) {
                 id: req.params.id
             }
         }).then(function(dbUpdatedReview) {
-            console.log(JSON.stringify(dbUpdatedReview))
-            res.redirect("/blog/" + req.body.BlogId);
+            // Gets the blog's current total review count and cumulative rating.
+            db.Blog.findOne({
+                where: {
+                    id : req.body.BlogId
+                }
+            }).then(function(dbBlog){
+                var newRating = parseFloat(req.body.rating); 
+                var pastRating = parseFloat(req.body.pastRating);                 
+                if (dbBlog.total_reviews){
+                    newRating = (parseFloat(dbBlog.cumulative_rating) * dbBlog.total_reviews - pastRating + newRating) / (dbBlog.total_reviews);
+                };
+                console.log(newRating)
+                // Updates the blog's total review count and cumulative rating.
+                db.Blog.update({
+                    cumulative_rating: newRating
+                }, {
+                    where : {
+                        id : req.body.BlogId
+                    }
+                }).then(function(dbUpdatedBlog){
+                    res.redirect("/blog/" + req.body.BlogId);
+                });
+            });
         });
     });
 }
