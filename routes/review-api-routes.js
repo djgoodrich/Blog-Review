@@ -1,16 +1,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-    // app.get("/api/reviews/:id", function(req, res) {
-    //     db.Review.findOne({
-    //         where: {
-    //             id: req.params.id
-    //         },
-    //         include: [db.Blog]
-    //     }).then(function(dbReview) {
-    //         res.json(dbReview);
-    //     });
-    // });
 
     app.post("/api/reviews", function(req, res) {
         // Gets the user id using the user sub from auth0
@@ -83,16 +73,19 @@ module.exports = function(app) {
         });
     });
 
-    app.delete("/api/review/:id", function(req, res) {
-        db.Review.destroy({
-            where: {
-                id: req.params.id
-            }
-        }).then(function(dbReview) {
-            res.json(dbReview)
-        });
-    });
+    // Functionality unavailable in this version.
+    
+    // app.delete("/api/review/:id", function(req, res) {
+    //     db.Review.destroy({
+    //         where: {
+    //             id: req.params.id
+    //         }
+    //     }).then(function(dbReview) {
+    //         res.json(dbReview)
+    //     });
+    // });
 
+    // Edit a review
     app.put("/api/review/:id", function(req, res) {
         db.Review.update({
             rating: req.body.rating,
@@ -108,13 +101,12 @@ module.exports = function(app) {
                 where: {
                     id : req.body.BlogId
                 }
-            }).then(function(dbBlog){
+            }).then(function(dbBlog) {
                 var newRating = parseFloat(req.body.rating); 
                 var pastRating = parseFloat(req.body.pastRating);                 
-                if (dbBlog.total_reviews){
+                if (dbBlog.total_reviews) {
                     newRating = (parseFloat(dbBlog.cumulative_rating) * dbBlog.total_reviews - pastRating + newRating) / (dbBlog.total_reviews);
                 };
-                console.log(newRating)
                 // Updates the blog's total review count and cumulative rating.
                 db.Blog.update({
                     cumulative_rating: newRating
@@ -123,7 +115,7 @@ module.exports = function(app) {
                         id : req.body.BlogId
                     }
                 }).then(function(dbUpdatedBlog){
-                    res.redirect("/blog/" + req.body.BlogId);
+                    res.redirect("back");
                 });
             });
         });
