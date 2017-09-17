@@ -104,15 +104,16 @@ animation-delay: -1s;
     border: 0;
     box-shadow: 10px 10px 5px #888888;
     margin-bottom: 15px;
-    margin-top: 15px; 
+    margin-top: 15px;
 }
 .card-body {
     font-family: 'Fredericka the Great', cursive;
-    margin-bottom: 40px;
-    
 }
 .card-text {
     font-family: "Roboto", sans-serif;
+}
+.rootCard {
+    height: 345px;
 }
 .title {
     background-color: #B92828;
