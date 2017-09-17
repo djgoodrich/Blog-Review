@@ -20,37 +20,7 @@
                         
                
         </ul>
-        <form action="/searchBlogs" method="POST" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search for a blog" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0 submitBtn" type="submit">Search</button>
-        </form>
-        {{#unless currentUserSub}}
-        <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>        {{/unless}} {{#if currentUserSub}}
-        <a href="/logout" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>        {{/if}}
-    </div>
-</nav>
-  {{#if currentUserSub}}
-                <!-- Modal that prompts sign in -->
-                <div class="modal fade" id="writeReviewSearchModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content addOne">
-                            <form action="/searchBlogs" method="POST" class="form-inline">
-                                <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
-<<<<<<< HEAD
-                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit">Search</button>
-=======
-                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit" id="search-btn">Search</button>
-
->>>>>>> 0cf24dfb67071929f0c6e9347cab662d4780b120
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                {{/if}}
-<<<<<<< HEAD
-=======
-        </ul>
-        <form id="search-form" class="form-inline my-2 my-lg-0">
+          <form id="search-form" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search for a blog" aria-label="Search">
             <button class="btn btn-outline-primary my-2 my-sm-0 submitBtn" type="submit">Search</button>
         </form>
@@ -62,6 +32,22 @@
         {{/if}}
     </div>
 </nav>
+  {{#if currentUserSub}}
+                <!-- Modal that prompts sign in -->
+                <div class="modal fade" id="writeReviewSearchModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content addOne">
+                            <form action="/searchBlogs" method="POST" class="form-inline">
+                                <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
+                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit" id="search-btn">Search</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+        </ul>
+      
 
 <script>
     $("#search-form").on("submit", function(event){
@@ -75,7 +61,6 @@
     });  
 </script>
 
->>>>>>> 0cf24dfb67071929f0c6e9347cab662d4780b120
 
 {{#unless currentUserSub}} 
     {{> modals/requiresLogin}} 
