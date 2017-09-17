@@ -1,6 +1,5 @@
 <script>
     localStorage.setItem("returnURL", window.location.href);
-
 </script>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light nav-color">
     <a class="navbar-brand" href="/"><img src="http://static.tumblr.com/9d8544b08a0439a9bac2fc1009555802/pk0ells/dDqmgt12d/tumblr_static_blog_logo.png" width="30" height="30" alt=""></a>
@@ -26,7 +25,7 @@
                             <form action="/searchBlogs" method="POST" class="form-inline">
 
                                 <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
-                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit">Search</button>
+                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit" id="search-btn">Search</button>
 
                             </form>
                         </div>
@@ -34,15 +33,32 @@
                 </div>
                 {{/if}}
         </ul>
-        <form action="/searchBlogs" method="POST" class="form-inline my-2 my-lg-0">
+        <form id="search-form" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search for a blog" aria-label="Search">
             <button class="btn btn-outline-primary my-2 my-sm-0 submitBtn" type="submit">Search</button>
         </form>
         {{#unless currentUserSub}}
-        <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>        {{/unless}} {{#if currentUserSub}}
-        <a href="/logout" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>        {{/if}}
+        <a href="/login" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Sign up/Log in</button></a>        
+        {{/unless}} 
+        {{#if currentUserSub}}
+        <a href="/logout" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>
+        {{/if}}
     </div>
 </nav>
+
+<script>
+    $("#search-form").on("submit", function(event){
+        event.preventDefault();
+        var searchTerm = $("input[name='keyword']").val();
+        searchTerm.trim();
+        console.log(searchTerm)
+        $.post("/searchBlogs/" + searchTerm, function(data){
+            console.log(data)
+            window.location.href = ("/searchBlogs/" + searchTerm);
+        });
+        
+    });  
+</script>
 
 
 {{#unless currentUserSub}} 

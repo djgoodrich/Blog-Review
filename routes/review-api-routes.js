@@ -108,13 +108,12 @@ module.exports = function(app) {
                 where: {
                     id : req.body.BlogId
                 }
-            }).then(function(dbBlog){
+            }).then(function(dbBlog) {
                 var newRating = parseFloat(req.body.rating); 
                 var pastRating = parseFloat(req.body.pastRating);                 
-                if (dbBlog.total_reviews){
+                if (dbBlog.total_reviews) {
                     newRating = (parseFloat(dbBlog.cumulative_rating) * dbBlog.total_reviews - pastRating + newRating) / (dbBlog.total_reviews);
                 };
-                console.log(newRating)
                 // Updates the blog's total review count and cumulative rating.
                 db.Blog.update({
                     cumulative_rating: newRating

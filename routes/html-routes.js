@@ -74,22 +74,26 @@ module.exports = function(app, auth) {
         });
       });
   });
-  app.post("/searchBlogs", function(req, res) {
+
+  app.post("/searchBlogs/:searchTerm", function(req, res) {
+    var searchTerm = req.params.searchTerm;
+    res.json(searchTerm)
+  });
+
+  app.get("/searchBlogs/:searchTerm", function(req, res) {
     var userSub;
     if (req.user) {
       userSub = req.user._json.sub;
     }
-    req.body.keyword = req.body.keyword.trim();
     db.Blog
       .findAll({
         where: {
           title: {
-            like: "%" + req.body.keyword + "%"
+            like: "%" + req.params.searchTerm + "%"
           }
         }
       })
       .then(function(dbBlog) {
-        console.log(JSON.stringify(dbBlog));
 
         if (typeof dbBlog[0] === "undefined") {
           res.render("searchResults", {
