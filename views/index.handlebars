@@ -1,7 +1,6 @@
 <!--page wrapper-->
-{{!-- <div class="container"> --}}
-    
-{{> navbar/navbar}}
+{{!--
+<div class="container"> --}} {{> navbar/navbar}}
     <!--page header-->
     <div class="row">
         <div class="col header">
@@ -28,25 +27,46 @@
     <div class="row background-main">
 
         {{#each topTen}}
-            <div class="col-sm-4 blog-card">
+        <div class="col-sm-4 blog-card">
             <div class="card-deck">
-            <div class="card">
-                <div class="card-body">
-                    <a class="colored-link" href="/blog/{{this.id}}">  
-                        <h3 class="title">{{this.title}}</h3>
-                    </a>
-                    <p class="card-text">By: {{this.blog_author}}</p>
-                    <p class="card-text">Website: <a href="{{this.website}}" target="_blank">{{this.website}}</a></p>
-                    <p class="card-text">Description: {{this.description}}</p> 
-                    <p class="card-text">Rating: {{this.rating}} </p>
+                <div class="card">
+                    <div class="card-body">
+                        <a class="colored-link" href="/blog/{{this.id}}">
+                            <h3 class="title">{{this.title}}</h3>
+                        </a>
+                        <p class="card-text">By: {{this.blog_author}}</p>
+                        <p class="card-text">Website: <a href="{{this.website}}" target="_blank">{{this.website}}</a></p>
+                        <p class="card-text">Description: {{this.description}}</p>
+                        <p class="card-text">Rating: <span class="stars">{{this.cumulative_rating}}</span> </p>
+                    </div>
                 </div>
             </div>
-            </div>
-            </div>
+        </div>
         {{/each}}
 
 
 
     </div>
-{{!-- </div> --}}
- {{> scripts/scripts}}
+
+    <!--show star rating-->
+    <script>
+        $.fn.stars = function () {
+            return $(this).each(function () {
+                // Get the value
+                var val = parseFloat($(this).html());
+                // Make sure that the value is in 0 - 5 range, multiply to get width
+                val = Math.round(val * 2) / 2;
+                var size = Math.max(0, (Math.min(5, val))) * 16;
+                // Create stars holder
+                var $span = $('<span />').width(size);
+                // Replace the numerical value with stars
+                $(this).html($span);
+            });
+        }
+        $(function () {
+            $('span.stars').stars();
+        });
+    </script>
+    <!--end of star rating-->
+
+    {{> scripts/scripts}}

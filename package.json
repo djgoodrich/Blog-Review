@@ -35,7 +35,6 @@
     "method-override": "^2.3.9",
     "mysql2": "^1.4.2",
     "path": "^0.12.7",
-    "semantic-ui": "^2.2.13",
     "sequelize": "^4.8.2"
   }
 }
