@@ -221,6 +221,8 @@ h1 { font-size: 1.5em; margin: 10px; }
  float: right; 
 }
 
+
+
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
@@ -234,4 +236,10 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 .close:focus {
     outline: none;
+}
+
+@media (max-width: 767px) {
+    .margin-btn {
+        margin: 15px 0px 10px 0px;
+    }
 }

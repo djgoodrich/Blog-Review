@@ -13,26 +13,13 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <button class="btn btn-outline-warning" data-toggle="modal" data-target={{#unless currentUserSub}} "#requiresLoginModal"{{/unless}}
-                    {{#if currentUserSub}} "#addBlogModal"{{/if}}>Add Blog</button> 
+                    {{#if currentUserSub}} "#addBlogModal"{{/if}}>Add Blog</button>
             </li>
             <li class="nav-item">
                 <button class="btn btn-outline-danger margin-btn" data-toggle="modal" data-target={{#unless currentUserSub}}
-                    "#requiresLoginModal"{{/unless}}{{#if currentUserSub}} "#writeReviewSearchModal"{{/if}}>Write A Review</button> 
-                {{#if currentUserSub}}
-                <!-- Modal that prompts sign in -->
-                <div class="modal fade" id="writeReviewSearchModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content addOne">
-                            <form action="/searchBlogs" method="POST" class="form-inline">
-
-                                <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
-                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit">Search</button>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                {{/if}}
+                    "#requiresLoginModal"{{/unless}}{{#if currentUserSub}} "#writeReviewSearchModal"{{/if}}>Write A Review</button>           
+                        
+               
         </ul>
         <form action="/searchBlogs" method="POST" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search for a blog" aria-label="Search">
@@ -43,6 +30,18 @@
         <a href="/logout" class="no-decoration-link"><button type="button" class="btn btn-outline-success login">Log out</button></a>        {{/if}}
     </div>
 </nav>
-
+  {{#if currentUserSub}}
+                <!-- Modal that prompts sign in -->
+                <div class="modal fade" id="writeReviewSearchModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content addOne">
+                            <form action="/searchBlogs" method="POST" class="form-inline">
+                                <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
+                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
 
 {{#unless currentUserSub}} {{> modals/requiresLogin}} {{/unless}} {{#if currentUserSub}} {{> modals/addBlog}} {{/if}}
