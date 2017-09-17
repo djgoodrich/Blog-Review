@@ -51,9 +51,7 @@
         event.preventDefault();
         var searchTerm = $("input[name='keyword']").val();
         searchTerm.trim();
-        console.log(searchTerm)
         $.post("/searchBlogs/" + searchTerm, function(data){
-            console.log(data)
             window.location.href = ("/searchBlogs/" + searchTerm);
         });
         

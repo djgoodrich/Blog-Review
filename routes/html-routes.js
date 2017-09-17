@@ -68,9 +68,15 @@ module.exports = function(app, auth) {
         }
       })
       .then(function(dbUser) {
+        var userMatch = false;
+        if(dbUser.sub === userSub){
+          userMatch = true;
+        }
+        console.log(userMatch)
         res.render("user", {
           user: dbUser,
-          currentUserSub: userSub
+          currentUserSub: userSub,
+          userMatch: userMatch
         });
       });
   });
@@ -110,4 +116,5 @@ module.exports = function(app, auth) {
         }
       });
   });
+  
 };
