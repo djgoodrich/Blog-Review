@@ -2,9 +2,10 @@
     {{> navbar/navbar}} 
     {{#if foundResults}} 
     {{#each blogs}}
-    <a class="no-decoration-link" href="/blog/{{this.id}}"><h1 class="mt-3 mb-3 title">{{title}}</h1></a>
+    <h3 class="mt-3 mb-3 title linked"><a class="no-decoration-link" href="/blog/{{this.id}}">{{title}}</a></h3>
     <p class="underline"><a href="{{website}}" target="_blank">{{website}}</a></p>
-    <p class="indent">{{description}}</p>
+    <p class="indent">Cumulative rating: <span class="stars">{{this.cumulative_rating}}</span> </p>
+    <p class="indent">Description: {{description}}</p>
     {{/each}}
     {{/if}}
 

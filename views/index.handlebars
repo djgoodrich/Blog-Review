@@ -32,7 +32,7 @@
                 <div class="card rootCard">
                     <div class="card-body">
                         <a class="colored-link" href="/blog/{{this.id}}">
-                            <h3 class="title">{{this.title}}</h3>
+                            <h3 class="title linked">{{this.title}}</h3>
                         </a>
                         <p class="card-text">By: {{this.blog_author}}</p>
                         <p class="card-text">Website: <a href="{{this.website}}" target="_blank">{{this.website}}</a></p>
@@ -43,30 +43,7 @@
             </div>
         </div>
         {{/each}}
-
-
-
     </div>
 
-    <!--show star rating-->
-    <script>
-        $.fn.stars = function () {
-            return $(this).each(function () {
-                // Get the value
-                var val = parseFloat($(this).html());
-                // Make sure that the value is in 0 - 5 range, multiply to get width
-                val = Math.round(val * 2) / 2;
-                var size = Math.max(0, (Math.min(5, val))) * 16;
-                // Create stars holder
-                var $span = $('<span />').width(size);
-                // Replace the numerical value with stars
-                $(this).html($span);
-            });
-        }
-        $(function () {
-            $('span.stars').stars();
-        });
-    </script>
-    <!--end of star rating-->
 
     {{> scripts/scripts}}

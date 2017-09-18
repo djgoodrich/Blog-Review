@@ -5,11 +5,12 @@
   {{#each user.Reviews}}
       <div class="card mt-3">
           <div class="card-body" >
-              <h3 class="title"><a href="../blog/{{this.Blog.id}}" class="no-decoration-link">{{this.Blog.title}}</a></h3>
+              <h3 class="title linked"><a href="../blog/{{this.Blog.id}}" class="no-decoration-link">{{this.Blog.title}}</a></h3>
               {{#if ../userMatch}}
               <button type="button" class="btn btnStyle editReviewBtn" data-toggle="modal" data-target="#editReviewModal" data-blog-title="{{this.Blog.title}}" data-review-id="{{this.id}}">Edit Review</button>
               {{/if}}
               <h4 class="underline"><em>{{this.title}}</em></h4>
+              <p class="indent"><span class="stars">{{this.rating}}</span> </p>
               <p class="indent">{{this.body}}</p>
           </div>
       </div>

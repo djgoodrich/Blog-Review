@@ -116,11 +116,12 @@ animation-delay: -1s;
     height: 345px;
 }
 .title {
+    font-family: 'Fredericka the Great', cursive;    
     background-color: #B92828;
     color: white;
     padding: 30px;
 }
-.title:hover{
+.linked.title:hover{
     box-shadow: 0px 5px 7px -2px rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
