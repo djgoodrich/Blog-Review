@@ -224,11 +224,10 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 span.stars, span.stars span {
     display: inline-block;
-    background: url(http://www.ulmanen.fi/stuff/stars.png) 0 -16px repeat-x;
+    background: url("../img/stars.png") 0 -16px repeat-x;
     width: 80px;
     height: 16px;
 }
-
 span.stars span {
     background-position: 0 0;
 }
