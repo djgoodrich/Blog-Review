@@ -13,6 +13,8 @@ module.exports = function(app) {
             // Adds user id as FK to the Review to associate it with the user submitting the review
             req.body.UserId = dbUser.id;
             req.body.rating = parseFloat(req.body.rating);
+            req.body.title.trim();
+            req.body.body.trim();
             db.Review.create(req.body).then(function(dbReview) {
                 // Gets the blog's current total review count and cumulative rating.
                 db.Blog.findOne({

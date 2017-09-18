@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           isEmpty(value) {
             if (value && value.length < 1) {
-              value === null;
+              value = null;
             }
           }
         }

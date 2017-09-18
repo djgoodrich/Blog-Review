@@ -72,7 +72,6 @@ module.exports = function(app, auth) {
         if(dbUser.sub === userSub){
           userMatch = true;
         }
-        console.log(userMatch)
         res.render("user", {
           user: dbUser,
           currentUserSub: userSub,
