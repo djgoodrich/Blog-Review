@@ -27,7 +27,10 @@ module.exports = function(sequelize, DataTypes) {
               len: [1]
             }
         },
-        cumulative_rating: DataTypes.DECIMAL(3,2),
+        cumulative_rating: {
+            type: DataTypes.DECIMAL(3,2),
+            defaultValue: 0
+        },
         total_reviews: DataTypes.INTEGER
     },
     {

@@ -153,13 +153,3 @@ INSERT INTO blog_reviews_db.blogs(title,website,description,blog_author) VALUES 
 INSERT INTO blog_reviews_db.blogs(title,website,description,blog_author) VALUES ('Yummly','https://www.yummly.com/','Blog on food, recipes, and technology','Multi-author');
 INSERT INTO blog_reviews_db.blogs(title,website,description,blog_author) VALUES ('Zen Habits','https://zenhabits.net/','Blog on productivity, Getting Things Done, simplifying, living frugal, happiness, and related topics.','Leo Babauta');
 INSERT INTO blog_reviews_db.blogs(title,website,description,blog_author) VALUES ('Zooillogix','http://scienceblogs.com/zooillogix/','Blog on zoology','Andrew and Benny Bleiman');
-
-
-INSERT INTO blog_reviews_db.users (name) VALUES ("Abby"), ("Brittany"), ("Clyde");
-
-
-INSERT INTO blog_reviews_db.reviews (title, body, rating, BlogId, UserId) 
-VALUES 
-("Best blog ever!!", "I love this blog. It's so good. Literally nothing I've read has ever been so good.", 5, 1, 1),
-("Worst blog ever!!", "I hate this blog. It sucks. I'd rather have shards of glass in my eyes than read another word.", 1, 2, 1),
-("It's okay...", "Mediocre blog. Not really worth the time it took to read.", 3, 1, 2);

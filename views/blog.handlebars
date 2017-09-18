@@ -8,7 +8,7 @@
     <button type="button" class="btn btn-warning" data-toggle="modal" 
         data-target={{#unless currentUserSub}}"#requiresLoginModal"{{/unless}}
         {{#if currentUserSub}}"#writeReviewModal"{{/if}}>Write Review
-    </button>    
+    </button> 
     {{#each blog.Reviews}}
     {{#if this.body}}
     <div class="card mt-3">
