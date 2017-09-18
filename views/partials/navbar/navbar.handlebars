@@ -33,26 +33,25 @@
     </div>
 </nav>
   {{#if currentUserSub}}
-                <!-- Modal that prompts sign in -->
-                <div class="modal fade" id="writeReviewSearchModal" tabindex="-1" role="dialog" aria-labelledby="requiresModalLogin" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content addOne">
-                            <form action="/searchBlogs" method="POST" class="form-inline">
-                                <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
-                                <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit" id="search-btn">Search</button>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                {{/if}}
-        </ul>
+    <!-- Modal that prompts to search for a review first -->
+    <div class="modal fade" id="writeReviewSearchModal" tabindex="-1" role="dialog" aria-labelledby="searchForABlogFirst" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content addOne">
+                <form class="form-inline">
+                    <input class="form-control widenIt" name="keyword" type="text" placeholder="Search for a Blog to Review" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0 btnInModal" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/if}}
       
 
 <script>
-    $("#search-form").on("submit", function(event){
+    $("#writeReviewSearchModal, #search-form").on("submit", function(event){
         event.preventDefault();
-        var searchTerm = $("input[name='keyword']").val();
+        console.log($(this).parent())
+        var searchTerm = $(this).find("input[name='keyword']").val();
         searchTerm.trim();
         $.post("/searchBlogs/" + searchTerm, function(data){
             window.location.href = ("/searchBlogs/" + searchTerm);
