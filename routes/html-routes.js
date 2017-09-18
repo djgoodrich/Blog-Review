@@ -7,6 +7,10 @@ var path = require("path");
 module.exports = function(app, auth) {
   //auth.requiresLogin if want to add login
   // Send to homepage with top ten blogs displayed
+  app.get("/null", function(req, res){
+    res.redirect("/");
+  })
+  
   app.get("/", function(req, res) {
     var userSub;
     if (req.user) {
