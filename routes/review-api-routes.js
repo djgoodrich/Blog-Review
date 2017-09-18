@@ -2,6 +2,7 @@ var db = require("../models");
 
 module.exports = function(app) {
 
+    // Add review to db
     app.post("/api/reviews", function(req, res) {
         // Gets the user id using the user sub from auth0
         db.User.findOne({
@@ -67,7 +68,6 @@ module.exports = function(app) {
                     BlogId : req.params.blogId
                 }
             }).then(function(dbReview) {
-                console.log("Review by this author for this blog already exists.")
                 res.json(dbReview);
             });
         });

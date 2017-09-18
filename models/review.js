@@ -3,12 +3,22 @@ module.exports = function(sequelize, DataTypes) {
       title: {
         type: DataTypes.STRING,
         validate: {
-          len: [1]
+          isEmpty(value) {
+            if (value && value.length < 1) {
+              value === null;
+            }
+          }
         }
       },
       body: {
         type: DataTypes.TEXT,
-        len: [1]
+        validate: {
+          isEmpty(value) {
+            if (value && value.length < 1) {
+              value = null;
+            }
+          }
+        }
       }, 
       rating: {
           type: DataTypes.DECIMAL(2,1),
@@ -28,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
         bothTitleAndBodyOrNone() {
           if ((this.title === null) !== (this.body === null)) {
             app.get('/flash', function(req, res){
-              res.redirect('/');
+              res.redirect('back');
             });
             throw new Error('Require either both title and body or neither')
           }

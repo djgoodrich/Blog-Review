@@ -253,3 +253,7 @@ span.stars span {
         margin: 15px 0px 10px 0px;
     }
 }
+
+.hideOnSubmit {
+    display:block;
+}
