@@ -12,9 +12,9 @@
                 <div class="modal-form">
                     <form action="/api/reviews" method="POST" id="addReviewForm">
                         <div class="form-group row">
-                            <label for="rating" class="col-sm-2 col-form-label">Overall rating</label>
+                            <label for="rating" class="col-sm-2 col-form-label">Overall rating*</label>
                             <div class="col-sm-10">
-                                <fieldset class="rating">
+                                <fieldset class="rating" id="ratingHelper">
                                     <input type="radio" id="star5" name="rating" value="5.0" /><label class="full" for="star5"
                                         title="Awesome - 5 stars"></label>
                                     <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half"
@@ -52,7 +52,8 @@
                         </div>
                         <input type="hidden" name="BlogId" value="{{blog.id}}">
                         <input type="hidden" name="userSub" value="{{currentUserSub}}">
-                        <button type="submit" class="btn btn-primary">Submit review</button>
+                        <div id="errorMessage"></div>
+                        <button type="submit" class="btn btn-primary" id="submit-review-btn">Submit review</button>
                     </form>
                 </div>
             </div> 

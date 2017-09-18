@@ -2,6 +2,7 @@ var db = require("../models");
 
 module.exports = function(app) {
 
+    // Add review to db
     app.post("/api/reviews", function(req, res) {
         // Gets the user id using the user sub from auth0
         db.User.findOne({
@@ -12,6 +13,8 @@ module.exports = function(app) {
             // Adds user id as FK to the Review to associate it with the user submitting the review
             req.body.UserId = dbUser.id;
             req.body.rating = parseFloat(req.body.rating);
+            req.body.title.trim();
+            req.body.body.trim();
             db.Review.create(req.body).then(function(dbReview) {
                 // Gets the blog's current total review count and cumulative rating.
                 db.Blog.findOne({
@@ -67,7 +70,6 @@ module.exports = function(app) {
                     BlogId : req.params.blogId
                 }
             }).then(function(dbReview) {
-                console.log("Review by this author for this blog already exists.")
                 res.json(dbReview);
             });
         });

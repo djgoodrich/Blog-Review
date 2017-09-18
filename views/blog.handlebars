@@ -10,12 +10,14 @@
         {{#if currentUserSub}}"#writeReviewModal"{{/if}}>Write Review
     </button>    
     {{#each blog.Reviews}}
+    {{#if this.body}}
     <div class="card mt-3">
         <div class="card-body">
             <h3 class="title">{{this.title}}</h3>
             <h4><em><a class="colored-link" href="/user/{{this.User.id}}">{{this.User.name}}</a></em></h4>
             <p>{{this.body}}</p>
         </div>
+    {{/if}}
     </div>
     {{/each}}
 </div>
