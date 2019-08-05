@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/djgoodrich/groupProject2#readme",
   "dependencies": {
-    "auth0-js": "^8.9.3",
+    "auth0-js": "^9.3.0",
     "body-parser": "^1.18.0",
     "dotenv": "^4.0.0",
     "exphbs": "^1.1.0",
